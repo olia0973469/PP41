@@ -1,5 +1,5 @@
 """
-Views for resort APIs.
+Views for cottage manager APIs.
 """
 from decimal import Decimal
 
@@ -174,11 +174,11 @@ class StatisticsView(APIView):
     """View to calculate and return total income and expenses for cottages."""
 
     def get(self, request):
-        total_income = Booking.objects.filter(cottage__user=request.user).aggregate(total=Sum('price'))[
+        total_income = Booking.objects.aggregate(total=Sum('price'))[
                            'total'] or Decimal('0')
 
         total_expenses = Decimal(
-            Cottage.objects.filter(user=request.user).aggregate(total=Sum('expenses'))['total'] or '0')
+            Cottage.objects.aggregate(total=Sum('expenses'))['total'] or '0')
         net_profit = total_income - total_expenses
 
         return Response({

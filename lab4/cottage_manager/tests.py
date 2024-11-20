@@ -1,5 +1,5 @@
 """
-Tests for models.
+Tests for cottage manager APIs.
 """
 from datetime import timedelta
 from decimal import Decimal

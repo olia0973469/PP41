@@ -1,5 +1,5 @@
 """
-URL mapping for the resort app.
+URL mapping for the app.
 """
 from django.urls import (
     path,

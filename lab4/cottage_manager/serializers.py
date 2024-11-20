@@ -1,5 +1,5 @@
 """
-Serializers for resort APIs.
+Serializers for cottage manager APIs.
 """
 from rest_framework import serializers
 
