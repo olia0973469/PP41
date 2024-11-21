@@ -16,9 +16,12 @@ router.register(r'booking', views.BookingViewSet)
 
 app_name = 'cottage-manager'
 
+##
+
 urlpatterns = [
     path('', include(router.urls)),
     path('availability/', views.AvailabilityView.as_view(), name='availability'),
     path('cottage-availability/', views.CottageAvailabilityView.as_view(), name='cottage-availability'),
     path('statistics/', views.StatisticsView.as_view(), name='statistics'),
 ]
+#

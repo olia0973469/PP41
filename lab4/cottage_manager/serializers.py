@@ -6,6 +6,8 @@ from rest_framework import serializers
 from cottage_manager.models import Cottage, Amenities, Booking
 
 
+##
+
 class AmenitiesSerializer(serializers.ModelSerializer):
     """Serializer for Amenities."""
 
@@ -39,6 +41,8 @@ class BookingSerializer(serializers.ModelSerializer):
 
         return data
 
+
+#
 
 class CottageSerializer(serializers.ModelSerializer):
     """Serializer for cottages."""
@@ -84,6 +88,8 @@ class CottageSerializer(serializers.ModelSerializer):
         return instance
 
 
+##
+
 class AvailabilitySerializer(serializers.Serializer):
     cottage = serializers.IntegerField()
     check_in = serializers.DateField()
@@ -103,3 +109,5 @@ class AvailabilitySerializer(serializers.Serializer):
 
 class CottageAvailabilitySerializer(serializers.Serializer):
     cottage = serializers.IntegerField()
+
+#
