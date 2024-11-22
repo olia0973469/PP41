@@ -40,9 +40,9 @@ class Cottage(models.Model):
     def calculate_total_capacity_and_expenses(self):
         """Calculate the total capacity, price per night and expenses of the cottage including amenities."""
         additional_capacity = sum(amenity.additional_capacity for amenity in self.amenities.all())
-        self.capacity = self.base_capacity + additional_capacity
+        self.capacity = Decimal(self.base_capacity) + additional_capacity
         self.price_per_night = Decimal(self.base_price) + sum(amenity.price for amenity in self.amenities.all())
-        self.expenses = self.base_expenses + sum(amenity.expenses for amenity in self.amenities.all())
+        self.expenses = Decimal(self.base_expenses) + sum(amenity.expenses for amenity in self.amenities.all())
 
     def __str__(self):
         return f'{self.name}, {self.category}, max. guests - {self.capacity}, price - {self.price_per_night}'

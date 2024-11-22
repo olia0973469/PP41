@@ -43,7 +43,7 @@ class ModelTests(TestCase):
         )
         cottage = models.Cottage.objects.create(
             name='Sample cottage name',
-            capacity=5,
+            base_capacity=5,
             price_per_night=Decimal('500.50')
         )
 
