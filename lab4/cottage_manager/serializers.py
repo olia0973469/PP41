@@ -55,12 +55,10 @@ class CottageSerializer(serializers.ModelSerializer):
 
     def _get_or_create_amenities(self, amenities, cottage):
         """Handle getting or creating amenities as needed."""
-        auth_user = self.context['request'].user
         for amenity in amenities:
             name = amenity.get('name')
             additional_capacity = amenity.get('additional_capacity', 0)
             amenity_obj, created = Amenities.objects.get_or_create(
-                user=auth_user,
                 name=name,
                 defaults={'additional_capacity': additional_capacity}
             )
