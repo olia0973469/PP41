@@ -1,3 +1,11 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+
+class CottageAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
+
+admin.site.register(models.Booking)
+admin.site.register(models.Cottage, CottageAdmin)
+admin.site.register(models.Amenities)
