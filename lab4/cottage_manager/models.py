@@ -29,18 +29,20 @@ class Cottage(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(null=False, db_index=True, unique=True)
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, default='standard')
-    capacity = models.IntegerField()
+    base_capacity = models.IntegerField(default=0)
+    capacity = models.IntegerField(editable=False, default=0)
     amenities = models.ManyToManyField(Amenities, blank=True)
-    price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
+    price_per_night = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=0)
     base_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    expenses = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    base_expenses = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    expenses = models.DecimalField(max_digits=10, decimal_places=2, default=0, editable=False)
 
     def calculate_total_capacity_and_expenses(self):
         """Calculate the total capacity, price per night and expenses of the cottage including amenities."""
         additional_capacity = sum(amenity.additional_capacity for amenity in self.amenities.all())
-        self.capacity = self.capacity + additional_capacity
+        self.capacity = self.base_capacity + additional_capacity
         self.price_per_night = Decimal(self.base_price) + sum(amenity.price for amenity in self.amenities.all())
-        self.expenses = self.expenses + sum(amenity.expenses for amenity in self.amenities.all())
+        self.expenses = self.base_expenses + sum(amenity.expenses for amenity in self.amenities.all())
 
     def __str__(self):
         return f'{self.name}, {self.category}, max. guests - {self.capacity}, price - {self.price_per_night}'
