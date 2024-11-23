@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'lab4.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Lab4Rita',
+        'NAME': 'PP4Rita',
         'USER': 'postgres',
-        'PASSWORD': 'axs22fg@',
+        'PASSWORD': 'kire0987@',
         'HOST': 'localhost',
         'PORT': '5432',
     }
